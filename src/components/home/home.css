@@ -1,0 +1,14 @@
+.img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+
+
+.layout {
+    display: flex;
+    justify-content: center;
+}
+.layout:hover {
+    opacity: 0.6;
+}
