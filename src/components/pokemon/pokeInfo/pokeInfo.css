@@ -1,5 +1,8 @@
 .mainCard {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: flex-start;
     box-shadow: 0 0 11px 5px rgba(50,50,50,0.2);
     background-color: white;
     width: 70vw;
@@ -7,25 +10,75 @@
 }
 
 .oneImg {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 250px;
+    max-width: 250px;
 }
 
 .statRow {
-    display: flex;
-    flex-direction: column;
+ display: flex;
+ flex-direction: column;
+ padding-top: 40px;
+
 }
 .progressBar {
     background-color: black;
     border-radius: 13px;
-    /* (height of inner div) / 2 + padding */
+    width: 300px;
     padding: 3px;
+     margin-left: 100px;
+     margin-top: 5px;
+   
   }
   
   .progressBar>div {
     background-color: orange;
-    width: 40%;
-    /* Adjust with JavaScript */
-    height: 20px;
+    justify-content: center;
+    height: 15px;
     border-radius: 10px;
+    
+  }
+
+  .card-header {
+      width: 70vw;
+      height: 5vh;
+      border: 1px solid black;
+
+  }
+  .container1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .test {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+
+  }
+
+  .fighting {
+      float: right;
+      border: 1px solid black;
+      border-radius: 50%;
+      padding: 2px;
+  }
+
+  .stat-name {
+    /* display: flex; */
+  }
+
+  .test2 {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      
+      
+  }
+  
+  .stats {
+      /* display: flex; */
   }

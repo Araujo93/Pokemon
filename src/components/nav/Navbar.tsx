@@ -7,9 +7,9 @@ const Navbar = () => {
                 <h1>Poke World</h1>
             <ul className='nav' >
                 <li className='listItem'><Link to='/Home'>Home</Link></li>
-                <li className='listItem'><a href="">Shiny</a></li>
-                <li className='listItem'><a href="">Something</a></li>
-                <li className='listItem'><a href="">About</a></li>  
+                <li className='listItem'><Link to="#">Shiny</Link></li>
+                <li className='listItem'><Link to="">Something</Link></li>
+                <li className='listItem'><Link to="">About</Link></li>  
             </ul>
         </div>
     )

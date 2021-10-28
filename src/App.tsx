@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/nav/Navbar';
 import PokemonList from './components/pokemon/PokemonList';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {Route, Switch } from 'react-router-dom';
 import PokeInfo from './components/pokemon/pokeInfo/PokeInfo';
 import Home from './components/home/Home';
 
