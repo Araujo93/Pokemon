@@ -1,20 +1,17 @@
 .container {
-    justify-content: space-around;
-    display: flex;   
-
+  justify-content: space-around;
+  display: flex;
 }
 
 .nav {
-    
-    list-style: none;
-    display: flex; 
-    align-items: center;
+  list-style: none;
+  display: flex;
+  align-items: center;
 }
 .listItem {
-    margin-right: 80px;  
-
+  margin-right: 80px;
 }
 
 .stats {
-    text-align:center;
+  text-align: center;
 }
