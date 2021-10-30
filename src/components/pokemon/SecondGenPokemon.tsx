@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PokeCard from "./pokeCard/PokeCard";
-interface IPokemon {
-  name: string;
-  url: string;
-}
+import { IPokemon } from "../../interfaces/interfaces";
 
 const SecondGenPokemon = () => {
   const [pokemon, setPokemon] = useState<IPokemon[]>([]);

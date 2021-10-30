@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { IDescription, IOnePokemon, IPokemon } from "../interfaces/interfaces";
+import {
+  IDescription,
+  IOnePokemon,
+  IPokemon,
+} from "../../interfaces/interfaces";
 export interface PokemonState {
   pokemon: IPokemon[];
   pokemonInfo: IOnePokemon;
@@ -117,5 +121,4 @@ export const pokemonSlice = createSlice({
   },
 });
 
-// export const { fetchAllPokemon } = pokemonSlice.actions;
 export default pokemonSlice.reducer;

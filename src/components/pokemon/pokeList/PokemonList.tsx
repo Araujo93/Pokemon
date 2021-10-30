@@ -2,15 +2,10 @@ import React, { useEffect } from "react";
 import PokeCard from "../pokeCard/PokeCard";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
-import { fetchAllPokemon } from "../../../redux/pokemonSlice";
-
-interface IPokemon {
-  name: string;
-  url: string;
-}
+import { fetchAllPokemon } from "../../../redux/slices/pokemonSlice";
+import { IPokemon } from "../../../interfaces/interfaces";
 
 const PokemonList = () => {
-  // const [pokemon, setPokemon] = useState<IPokemon[]>([]);
   const { pokemon } = useAppSelector((state: RootState) => state.pokemon);
   const dispatch = useAppDispatch();
 
@@ -20,7 +15,6 @@ const PokemonList = () => {
     };
     getPokemon();
   }, [dispatch]);
-  // console.log(pokemon)
   return (
     <div className="pokemonList background">
       {pokemon &&

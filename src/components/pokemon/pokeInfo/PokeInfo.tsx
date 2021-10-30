@@ -7,22 +7,21 @@ import { RootState } from "../../../redux/store";
 import {
   fetchAllPokemonDesc,
   fetchAllPokemonInfo,
-} from "../../../redux/pokemonSlice";
+} from "../../../redux/slices/pokemonSlice";
 import { id } from "../../../interfaces/interfaces";
 
 const PokeInfo = () => {
-  let { id } = useParams<id>();
-
   const { pokemonInfo: pokemon, pokemonDesc } = useAppSelector(
     (state: RootState) => state.pokemon
   );
   const dispatch = useAppDispatch();
 
+  let { id } = useParams<id>();
+  // Pokemon fetch for info and description
   useEffect(() => {
     const catchSinglePokemon = async (id: string) => {
       await dispatch(fetchAllPokemonInfo(id));
     };
-
     const getPokemonDesc = async (id: string) => {
       await dispatch(fetchAllPokemonDesc(id));
     };
