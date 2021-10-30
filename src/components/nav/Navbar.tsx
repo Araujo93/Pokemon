@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import "./nav.css";
+import { useAppDispatch } from "../../redux/hooks";
+import { logOut } from "../../redux/slices/userSlice";
 const Navbar = () => {
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  const remove = () => {
+    dispatch(logOut());
+    history.push("/login");
+  };
+
   return (
     <div className="container">
       <h1>Poke World</h1>
@@ -17,6 +28,9 @@ const Navbar = () => {
         </li>
         <li className="listItem">
           <Link to="">About</Link>
+        </li>
+        <li className="listItem">
+          <button onClick={remove}>Logout</button>
         </li>
       </ul>
     </div>

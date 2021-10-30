@@ -1,34 +1,31 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
-import { registerUser } from "../../redux/slices/userSlice";
-import { IUser } from "../../interfaces/interfaces";
-import "./auth.css";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import { signInUser } from "../../redux/slices/userSlice";
+import { IUser } from "../../interfaces/interfaces";
 
-const RegisterUser = () => {
+const LoginUser = () => {
   const dispatch = useAppDispatch();
+  const history = useHistory();
   const [userState, setUserState] = useState<IUser>({
     userName: "",
     password: "",
     errorMessage: "",
     isAuthenticated: false,
   });
-
   const { errorMessage } = useAppSelector((state: RootState) => state.user);
-  const history = useHistory();
   const submitForm = async (state: IUser, e: any) => {
     e.preventDefault();
-    const res = await dispatch(registerUser(state));
-    if (res.type === "user/registerUser/fulfilled") {
+    const res = await dispatch(signInUser(state));
+    if (res.type === "user/signInUser/fulfilled") {
       history.push("/home");
     }
   };
-
   return (
     <div className="form">
-      <h1>Please register</h1>
+      <h1>Login</h1>
       {errorMessage ? <h3>{errorMessage}</h3> : null}
       <form>
         <label htmlFor="Username">
@@ -57,9 +54,9 @@ const RegisterUser = () => {
           </button>
         </div>
       </form>
-      <Link to={"/login"}> GO TO LOGIN</Link>
+      <Link to={"/register"}> GO TO REGISTER</Link>
     </div>
   );
 };
 
-export default RegisterUser;
+export default LoginUser;
