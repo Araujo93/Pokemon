@@ -4,6 +4,7 @@ import "./home.css";
 import img from "../../assets/pokemon_151.png";
 import secondGen from "../../assets/new.png";
 import thirdGen from "../../assets/third.png";
+
 const Home = () => {
   return (
     <>

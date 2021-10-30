@@ -66,6 +66,6 @@ export interface IDescription {
 export interface IUser {
   userName: string;
   password: string;
-  token: string;
   errorMessage: string;
+  isAuthenticated: boolean;
 }
