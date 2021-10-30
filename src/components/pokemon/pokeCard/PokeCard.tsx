@@ -5,6 +5,7 @@ import {
   getFrontImg,
   getIndex,
 } from "../../../helperFunctions/pokemonInfo";
+import "./pokeCard.css";
 
 import { Item } from "../../../interfaces/interfaces";
 
@@ -12,14 +13,14 @@ const PokeCard = ({ item }: Item) => {
   return (
     <div className="card">
       <Link to={`/about/${getIndex(item.url)}`} className="front face">
-        <div># {getIndex(item.url)}</div>
+        <div className="poke_name"># {getIndex(item.url)}</div>
         <img src={getFrontImg(item.url)} alt="" />
-        <div>{item.name}</div>
+        <div className="poke_name">{item.name}</div>
       </Link>
       <Link to={`/about/${getIndex(item.url)}`} className="back face">
-        <div># {getIndex(item.url)}</div>
+        <div className="poke_name"># {getIndex(item.url)}</div>
         <img src={getBackImg(item.url)} alt="" />
-        <div className="">{item.name}</div>
+        <div className="poke_name">{item.name}</div>
       </Link>
     </div>
   );

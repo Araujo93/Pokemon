@@ -55,7 +55,12 @@ export const getTypes = (pokemon: IOnePokemon) => {
             {type.name}
           </span>
         );
-      if (type.name === "bug") return <span className="bug">{type.name}</span>;
+      if (type.name === "bug")
+        return (
+          <span key={type.name + "2"} className="bug">
+            {type.name}
+          </span>
+        );
       if (type.name === "poison")
         return (
           <span key={type.name + "G"} className="poison">
@@ -80,7 +85,12 @@ export const getTypes = (pokemon: IOnePokemon) => {
             {type.name}
           </span>
         );
-      if (type.name === "ice") return <span className="ice">{type.name}</span>;
+      if (type.name === "ice")
+        return (
+          <span key={type.name + "1"} className="ice">
+            {type.name}
+          </span>
+        );
       if (type.name === "dragon")
         return (
           <span key={type.name + "K"} className="dragon">
@@ -94,7 +104,11 @@ export const getTypes = (pokemon: IOnePokemon) => {
           </span>
         );
       if (type.name === "psychic")
-        return <span className="psychic">{type.name}</span>;
+        return (
+          <span key={type.name + "3"} className="psychic">
+            {type.name}
+          </span>
+        );
       if (type.name === "flying")
         return (
           <span key={type.name + "M"} className="flying">
@@ -120,7 +134,7 @@ export const getTypes = (pokemon: IOnePokemon) => {
           </span>
         );
       else {
-        return <span>No Info</span>;
+        return null;
       }
     })
   );
