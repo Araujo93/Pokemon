@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 import { registerUser } from "../../redux/slices/userSlice";
 import { IUser } from "../../interfaces/interfaces";
 import "./auth.css";
@@ -10,7 +11,10 @@ const RegisterUser = () => {
     userName: "",
     password: "",
     token: "",
+    errorMessage: "",
   });
+
+  const { errorMessage } = useAppSelector((state: RootState) => state.user);
 
   const submitForm = async (state: IUser, e: any) => {
     e.preventDefault();
@@ -20,6 +24,7 @@ const RegisterUser = () => {
   return (
     <div className="form">
       <h1>Please register</h1>
+      {errorMessage ? <h3>{errorMessage}</h3> : null}
       <form>
         <label htmlFor="Username">
           <p>UserName</p>

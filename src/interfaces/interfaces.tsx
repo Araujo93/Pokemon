@@ -67,4 +67,5 @@ export interface IUser {
   userName: string;
   password: string;
   token: string;
+  errorMessage: string;
 }
