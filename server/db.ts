@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
+require("dotenv").config();
 
-mongoose.connect(
-  "mongodb+srv://sean:araujo93@cluster0.ngetw.mongodb.net/pokemon?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DB_STRING);
 
 mongoose.connection.on("connected", () => {
   console.log("connected to MongoDb");
