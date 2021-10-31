@@ -68,8 +68,8 @@ const PokeInfo = () => {
             })}
           </div>
         )}
-        <div>
-          <hr />
+        <div style={{ marginRight: "10px", marginLeft: "10px" }}>
+          <hr style={{ marginBlock: "10px" }} />
           {pokemonDesc.flavor_text_entries &&
             pokemonDesc.flavor_text_entries[0].flavor_text}{" "}
         </div>

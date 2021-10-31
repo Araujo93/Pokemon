@@ -14,26 +14,26 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container">
+    <nav className="container12">
       <h1>Poke World</h1>
       <ul className="nav">
         <li className="listItem">
           <Link to="/Home">Home</Link>
         </li>
         <li className="listItem">
-          <Link to="#">Shiny</Link>
+          <Link to="/">Original</Link>
         </li>
         <li className="listItem">
-          <Link to="">Something</Link>
+          <Link to="/secondGen">Second Gen</Link>
         </li>
         <li className="listItem">
-          <Link to="">About</Link>
+          <Link to="/thirdGen">Third Gen</Link>
         </li>
         <li className="listItem">
           <button onClick={remove}>Logout</button>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

@@ -34,3 +34,14 @@
 .title {
   text-align: center;
 }
+
+.span1 {
+  color: #cc0000;
+}
+.span2 {
+  color: #3b4cca;
+}
+
+.span3 {
+  color: #ffde00;
+}
