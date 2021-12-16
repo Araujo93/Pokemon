@@ -9,19 +9,20 @@ const Home = () => {
   return (
     <>
       <div className="layout">
-        <Link className="original" to="/">
+        <Link className="original" to="/first">
           <h2 className="title">
-            {" "}
-            <span className="span1">O</span>
+            <h4 className="gradient">Original 151</h4>
+            {/* <span className="span1">O</span>
             <span className="span2">r</span>
             <span className="span3">i</span>
             <span className="span1">g</span>
             <span className="span2">i</span>
             <span className="span3">n</span>
             <span className="span1">a</span>
-            <span className="span2">l</span> <span className="span3">1</span>
+            <span className="span2">l</span>
+            <span className="span3">1</span>
             <span className="span1">5</span>
-            <span className="span2">1</span>
+            <span className="span2">1</span> */}
           </h2>
           <img className="img" src={img} alt="" />
         </Link>

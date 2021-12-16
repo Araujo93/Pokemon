@@ -35,6 +35,12 @@
   text-align: center;
 }
 
+.gradient {
+  background: -webkit-linear-gradient(red, blue, yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .span1 {
   color: #cc0000;
 }

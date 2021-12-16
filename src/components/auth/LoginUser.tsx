@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { useHistory } from "react-router";
-import { signInUser } from "../../redux/slices/userSlice";
+import { signInUser, guestLogin } from "../../redux/slices/userSlice";
 import { IUser } from "../../interfaces/interfaces";
 
 const LoginUser = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
+
+  const guest = () => {
+    dispatch(guestLogin);
+    history.push("/home");
+  };
   const [userState, setUserState] = useState<IUser>({
     userName: "",
     password: "",
@@ -54,6 +59,7 @@ const LoginUser = () => {
           </button>
         </div>
       </form>
+      <button onClick={() => guest()}>continue as guest</button>
       <Link to={"/register"}> GO TO REGISTER</Link>
     </div>
   );

@@ -6,12 +6,26 @@ import {
 } from "../../interfaces/interfaces";
 export interface PokemonState {
   pokemon: IPokemon[];
+  secondGen: IPokemon[];
+  thirdGen: IPokemon[];
   pokemonInfo: IOnePokemon;
   pokemonDesc: IDescription;
 }
 
 const initialState: PokemonState = {
   pokemon: [
+    {
+      name: "",
+      url: "",
+    },
+  ],
+  secondGen: [
+    {
+      name: "",
+      url: "",
+    },
+  ],
+  thirdGen: [
     {
       name: "",
       url: "",
@@ -79,6 +93,25 @@ export const fetchAllPokemon = createAsyncThunk(
   }
 );
 
+export const fetchSecondGenPokemon = createAsyncThunk(
+  "pokemon/fetchSecondGenPokemon",
+  async () => {
+    const response = await fetch(
+      "https://pokeapi.co/api/v2/pokemon/?offset=151&limit=100"
+    );
+    return await response.json();
+  }
+);
+export const fetchThirdGenPokemon = createAsyncThunk(
+  "pokemon/fetchThirdGenPokemon",
+  async () => {
+    const response = await fetch(
+      "https://pokeapi.co/api/v2/pokemon/?offset=251&limit=135"
+    );
+    return await response.json();
+  }
+);
+
 export const fetchAllPokemonInfo = createAsyncThunk(
   "pokemon/fetchAllPokemonInfo",
   async (id: string) => {
@@ -111,6 +144,12 @@ export const pokemonSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchAllPokemon.fulfilled, (state, action) => {
       state.pokemon = action.payload.results;
+    });
+    builder.addCase(fetchSecondGenPokemon.fulfilled, (state, action) => {
+      state.secondGen = action.payload.results;
+    });
+    builder.addCase(fetchThirdGenPokemon.fulfilled, (state, action) => {
+      state.thirdGen = action.payload.results;
     });
     builder.addCase(fetchAllPokemonInfo.fulfilled, (state, action) => {
       state.pokemonInfo = action.payload;

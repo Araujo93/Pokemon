@@ -50,6 +50,9 @@ export const userSlice = createSlice({
       localStorage.removeItem("accessToken");
       state.isAuthenticated = false;
     },
+    guestLogin: (state) => {
+      state.isAuthenticated = true;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -83,6 +86,6 @@ export const userSlice = createSlice({
       );
   },
 });
-export const { logOut } = userSlice.actions;
+export const { logOut, guestLogin } = userSlice.actions;
 
 export default userSlice.reducer;
