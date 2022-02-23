@@ -15,15 +15,18 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <Router>
-        <Navbar />
         <Switch>
           <Route exact path="/" component={LoginUser} />
-          <Route path="/first" component={PokemonList} />
           <Route path="/register" component={RegisterUser} />
-          <Route path="/home" component={Home} />
-          <Route path="/about/:id" component={PokeInfo} />
-          <Route path="/secondGen" component={SecondGenPokemon} />
-          <Route path="/thirdGen" component={ThirdGenPokemon} />
+          <>
+            <Navbar />
+
+            <Route path="/first" component={PokemonList} />
+            <Route path="/home" component={Home} />
+            <Route path="/about/:id" component={PokeInfo} />
+            <Route path="/secondGen" component={SecondGenPokemon} />
+            <Route path="/thirdGen" component={ThirdGenPokemon} />
+          </>
         </Switch>
       </Router>
     </div>

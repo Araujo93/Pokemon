@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import { fetchAllPokemon } from "../../../redux/slices/pokemonSlice";
 import { IPokemon } from "../../../interfaces/interfaces";
+import "./pokeList.css";
 
 const PokemonList = () => {
   const { pokemon } = useAppSelector((state: RootState) => state.pokemon);
@@ -16,12 +17,17 @@ const PokemonList = () => {
     getPokemon();
   }, [dispatch]);
   return (
-    <div className="pokemonList background">
-      {pokemon &&
-        pokemon.map((item: IPokemon, index: number) => (
-          <PokeCard key={index} item={item} />
-        ))}
-    </div>
+    <>
+      <div className="pokemonList background">
+        {pokemon &&
+          pokemon.map((item: IPokemon, index: number) => (
+            <PokeCard key={index} item={item} />
+          ))}
+      </div>
+      <h3 onClick={() => (document.documentElement.scrollTop = 0)}>
+        Back to top
+      </h3>
+    </>
   );
 };
 

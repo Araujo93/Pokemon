@@ -32,20 +32,17 @@ const Navlinks = ({ hamburger }: any) => {
         <li className="listItem">
           <Link to="/thirdGen">Third Gen</Link>
         </li>
-        {isAuthenticated && (
-          <button className="auth_btn listItem" onClick={remove}>
-            Logout
-          </button>
-        )}
-        {!isAuthenticated && (
-          <button
-            className="auth_btn listItem"
-            onClick={() => history.push("/")}
-          >
-            LogIn
-          </button>
-        )}
       </ul>
+      {isAuthenticated && (
+        <button className="auth_btn listItem" onClick={remove}>
+          Logout
+        </button>
+      )}
+      {!isAuthenticated && (
+        <button className="auth_btn listItem" onClick={() => history.push("/")}>
+          LogIn
+        </button>
+      )}
     </>
   );
 };

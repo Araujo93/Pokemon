@@ -53,6 +53,11 @@ export const userSlice = createSlice({
     guestLogin: (state) => {
       state.isAuthenticated = true;
     },
+    reset: (state) => {
+      state.userName = "";
+      state.password = "";
+      state.errorMessage = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -74,6 +79,7 @@ export const userSlice = createSlice({
         (state, action: PayloadAction<any, string>) => {
           state.userName = action.payload.user.userName;
           state.password = action.payload.user.password;
+          state.errorMessage = "";
           localStorage.setItem("accessToken", action.payload.token);
           state.isAuthenticated = true;
         }
@@ -86,6 +92,6 @@ export const userSlice = createSlice({
       );
   },
 });
-export const { logOut, guestLogin } = userSlice.actions;
+export const { logOut, guestLogin, reset } = userSlice.actions;
 
 export default userSlice.reducer;

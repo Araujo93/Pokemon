@@ -39,7 +39,7 @@ export const signInUser = async (req: Request, res: Response) => {
     const { userName, password } = req.body;
     if (!userName || !password) {
       return res
-        .send(422)
+        .status(422)
         .send({ message: "Must provide username and password" });
     }
     const user = await User.findOne({ userName });
