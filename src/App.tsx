@@ -1,39 +1,42 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "./components/navbar/Navbar";
-import PokemonList from "./components/pokemon/pokeList/PokemonList";
 import { Route, Switch } from "react-router-dom";
 import PokeInfo from "./components/pokemon/pokeInfo/PokeInfo";
 import RegisterUser from "./components/auth/RegisterUser";
 import Home from "./components/home/Home";
 import Pokemon from "./components/pokemon/Pokemon";
 import { BrowserRouter as Router } from "react-router-dom";
-import { IPokemon } from "./interfaces/interfaces";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import {
+  fetchSecondGenPokemon,
+  fetchThirdGenPokemon,
+  fetchAllPokemon,
+} from "./redux/slices/pokemonSlice";
 
 import LoginUser from "./components/auth/LoginUser";
+import { RootState } from "./redux/store";
 
 function App(): JSX.Element {
-  const [secondGenPokemon, setSecondGenPokemon] = useState<IPokemon[]>([]);
-  const [thirdGenPokemon, setThirdGenPokemon] = useState<IPokemon[]>([]);
+  const dispatch = useAppDispatch();
+  const { pokemon } = useAppSelector((state: RootState) => state.pokemon);
+  const { secondGen } = useAppSelector((state: RootState) => state.pokemon);
+  const { thirdGen } = useAppSelector((state: RootState) => state.pokemon);
 
   useEffect(() => {
+    const getFirstGenPokemon = async () => {
+      await dispatch(fetchAllPokemon());
+    };
     const getSecondGenPokemon = async () => {
-      const res = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?offset=151&limit=100"
-      );
-      const data = await res.json();
-      setSecondGenPokemon(data.results);
+      await dispatch(fetchSecondGenPokemon());
     };
     const getThirdGenPokemon = async () => {
-      const res = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?offset=251&limit=135"
-      );
-      const data = await res.json();
-      setThirdGenPokemon(data.results);
+      await dispatch(fetchThirdGenPokemon());
     };
+    getFirstGenPokemon();
     getThirdGenPokemon();
     getSecondGenPokemon();
-  }, [secondGenPokemon, thirdGenPokemon]);
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -43,17 +46,16 @@ function App(): JSX.Element {
           <Route path="/register" component={RegisterUser} />
           <>
             <Navbar />
-
-            <Route path="/first" component={PokemonList} />
             <Route path="/home" component={Home} />
             <Route path="/about/:id" component={PokeInfo} />
+            <Route path="/first" render={() => <Pokemon item={pokemon} />} />
             <Route
               path="/secondGen"
-              render={() => <Pokemon item={secondGenPokemon} />}
+              render={() => <Pokemon item={secondGen} />}
             />
             <Route
               path="/thirdGen"
-              render={() => <Pokemon item={thirdGenPokemon} />}
+              render={() => <Pokemon item={thirdGen} />}
             />
           </>
         </Switch>
