@@ -1,11 +1,7 @@
 import React from "react";
 import PokeCard from "./pokeCard/PokeCard";
 import { IPokemon } from "../../interfaces/interfaces";
-import {
-  fetchSecondGenPokemon,
-  fetchThirdGenPokemon,
-} from "../../redux/slices/pokemonSlice";
-import "./pokeList/pokeList.css";
+// import "./pokeList.css";
 
 const Pokemon = (props: { item: IPokemon[] }) => {
   return (

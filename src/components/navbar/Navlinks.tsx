@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import { useHistory } from "react-router";
-import Hamburger from "./mobileNav/Hamburger";
+// import Hamburger from "./mobileNav/Hamburger";
 import "./nav.css";
 
 const Navlinks = ({ hamburger }: any) => {

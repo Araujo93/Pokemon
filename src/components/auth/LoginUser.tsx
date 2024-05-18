@@ -5,6 +5,8 @@ import { RootState } from "../../redux/store";
 import { useHistory } from "react-router";
 import { signInUser, guestLogin, reset } from "../../redux/slices/userSlice";
 import { IUser } from "../../interfaces/interfaces";
+import Input from "../Input/Input";
+import "./auth.css";
 
 const LoginUser = () => {
   const dispatch = useAppDispatch();
@@ -34,36 +36,33 @@ const LoginUser = () => {
   return (
     <div className="form-container">
       <div className="title-container">
-        <h1 className="title">Login</h1>
+        <h1 className="auth-title">Login</h1>
       </div>
       <form className="form">
         {errorMessage && <h4 className="error">{errorMessage}</h4>}
-        <label htmlFor="username">
-          <p>Username</p>
-        </label>
-        <input
-          className="username input"
-          placeholder="Username"
-          name="username"
-          type="text"
-          value={userState.userName}
-          onChange={(e) =>
+
+        <Input
+          type={"text"}
+          name={"name"}
+          id={""}
+          placeHolder={"Username"}
+          label={"Username"}
+          onChange={(e: any) =>
             setUserState({ ...userState, userName: e.target.value })
           }
         />
-        <label htmlFor="password">
-          <p>Password</p>
-        </label>
-        <input
-          className="password input"
-          placeholder="Password"
-          type="password"
-          name="password"
-          value={userState.password}
-          onChange={(e) =>
+
+        <Input
+          type={"text"}
+          name={"password"}
+          id={""}
+          label={"Password"}
+          placeHolder={"Password"}
+          onChange={(e: any) =>
             setUserState({ ...userState, password: e.target.value })
           }
         />
+
         <div>
           <button
             className="submit-button"

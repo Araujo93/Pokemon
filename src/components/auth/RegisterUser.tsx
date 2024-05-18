@@ -7,6 +7,7 @@ import { IUser } from "../../interfaces/interfaces";
 import "./auth.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import Input from "../Input/Input";
 
 const RegisterUser = () => {
   const dispatch = useAppDispatch();
@@ -35,33 +36,27 @@ const RegisterUser = () => {
   return (
     <div className="form-container">
       <div className="title-container">
-        <h1 className="title">Register</h1>
+        <h1 className="auth-title">Register</h1>
       </div>
       <form className="form">
         {errorMessage ? <h4>{errorMessage}</h4> : null}
-        <label htmlFor="Username">
-          <p>Username</p>
-        </label>
-        <input
-          placeholder="Username"
-          className="input username"
-          name="Username"
-          type="text"
-          value={userState.userName}
-          onChange={(e) =>
+        <Input
+          type={"text"}
+          name={"name"}
+          id={""}
+          placeHolder={"Username"}
+          label={"Username"}
+          onChange={(e: any) =>
             setUserState({ ...userState, userName: e.target.value })
           }
         />
-        <label htmlFor="Password">
-          <p>Password</p>
-        </label>
-        <input
-          placeholder="Password"
-          className="input password"
-          type="password"
-          name="Password"
-          value={userState.password}
-          onChange={(e) =>
+        <Input
+          type={"text"}
+          name={"password"}
+          id={""}
+          label={"Password"}
+          placeHolder={"Password"}
+          onChange={(e: any) =>
             setUserState({ ...userState, password: e.target.value })
           }
         />

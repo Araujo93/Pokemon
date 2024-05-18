@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./pokeInfo.css";
 import { useParams } from "react-router";
-import { getIndex, getTypes } from "../../../helperFunctions/pokemonInfo";
+import { getTypes } from "../../../helperFunctions/pokemonInfo";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import {
