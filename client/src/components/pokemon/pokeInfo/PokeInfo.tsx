@@ -40,6 +40,12 @@ const PokeInfo = () => {
     await catchSinglePokemon(id + 1);
     await dispatch(fetchAllPokemonDesc(id + 1));
   };
+
+  const previousPokemon = async (id: any) => {
+    await catchSinglePokemon(id - 1);
+    await dispatch(fetchAllPokemonDesc(id - 1));
+  };
+
   // Pokemon fetch for info and description
   useEffect(() => {
     const getPokemonDesc = async (id: string) => {
@@ -99,44 +105,53 @@ const PokeInfo = () => {
         <div className="types">{getTypes(pokemon)}</div>
       </header>
       <div className="mainCard">
-        <div className="imageCard">
-          <img
-            className="oneImg"
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-            alt=""
-          />
-          {/* <div className="poke-weight">
-            <p style={{ borderBottom: "1px solid black" }}>Height & Weight</p>
-            <div>{(pokemon.height * 0.328).toFixed(2)} ft</div>
-            {pokemon.weight * 0.22} lb
-          </div> */}
-        </div>
-        {pokemon.stats[0].base_stat !== 0 && (
-          <div className="statRow">
-            {pokemon.stats.map((stat) => {
-              return (
-                <div className="test" key={stat.stat.name}>
-                  <div className="stats1">{stat.stat.name}</div>
-                  <div className="progressBar">
-                    <div
-                      className="stats"
-                      style={{ width: `${(stat.base_stat / 255) * 100}%` }}
-                    >
-                      {stat.base_stat}
+        <div style={{ height: "70%", width: "100%", display: "flex" }}>
+          <div className="imageCard">
+            <img
+              className="oneImg"
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+              alt=""
+            />
+            <div className="poke-weight">
+              <p style={{ borderBottom: "1px solid black" }}>Height & Weight</p>
+              <div>{(pokemon.height * 0.328).toFixed(2)} ft</div>
+              {pokemon.weight * 0.22} lb
+            </div>
+          </div>
+          {pokemon.stats[0].base_stat !== 0 && (
+            <div className="statRow">
+              {pokemon.stats.map((stat) => {
+                return (
+                  <div className="test" key={stat.stat.name}>
+                    <div className="stats1">{stat.stat.name}</div>
+                    <div className="progressBar">
+                      <div
+                        className="stats"
+                        style={{ width: `${(stat.base_stat / 255) * 100}%` }}
+                      >
+                        {stat.base_stat}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-        <div style={{ marginRight: "10px", marginLeft: "10px" }}>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div style={{ marginRight: "10px", marginLeft: "10px", width: "100%" }}>
           <hr style={{ marginBlock: "10px" }} />
           {pokemonDesc.flavor_text_entries &&
             pokemonDesc.flavor_text_entries[0].flavor_text}{" "}
         </div>
-        <button>Previous</button>
-        <button onClick={() => nextPokemon(pokemon.id)}>Next</button>
+        <div className="btn-container">
+          <button className="btn" onClick={() => previousPokemon(pokemon.id)}>
+            Previous
+          </button>
+          <button className="btn" onClick={() => nextPokemon(pokemon.id)}>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

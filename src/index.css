@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-
-html {
-  background: url("./assets/pokeballs.webp") no-repeat center fixed;
-  background-size: cover;
-}
-
-@tailwind utilities;

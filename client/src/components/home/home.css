@@ -1,3 +1,8 @@
+body {
+  background: url("../../assets/pokeballs.webp") no-repeat center fixed;
+  background-size: cover;
+}
+
 .img {
   max-width: 300px;
   max-height: 300px;

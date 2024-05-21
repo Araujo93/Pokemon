@@ -3,7 +3,7 @@ import "./input.css";
 
 const Input = ({ type, name, id, label, onChange, placeHolder }: any) => {
   return (
-    <div className="container">
+    <>
       <label htmlFor={name}>
         <p>{label}</p>
       </label>
@@ -15,7 +15,7 @@ const Input = ({ type, name, id, label, onChange, placeHolder }: any) => {
         // value={userState.userName}
         onChange={onChange}
       />
-    </div>
+    </>
   );
 };
 
