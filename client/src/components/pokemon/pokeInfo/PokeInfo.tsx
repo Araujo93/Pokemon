@@ -90,9 +90,51 @@ const PokeInfo = () => {
       ));
   };
 
+  //   <div className="poke-weight">
+  //   <p style={{ borderBottom: "1px solid black" }}>Height & Weight</p>
+  //   <div>{(pokemon.height * 0.328).toFixed(2)} ft</div>
+  //   {pokemon.weight * 0.22} lb
+  // </div>
   return (
     <div className="container1">
-      <header className="card-header">
+      <div className="pokemon-main">
+        <div className="imageCard">
+          <img
+            className="oneImg"
+            src={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`}
+            alt=""
+          />
+          {pokemon.stats[0].base_stat !== 0 && (
+            <div className="statRow">
+              {pokemon.stats.map((stat) => {
+                return (
+                  <div className="test" key={stat.stat.name}>
+                    <div className="stats1">{stat.stat.name}</div>
+                    <div className="progressBar">
+                      <div
+                        className="stats"
+                        style={{ width: `${(stat.base_stat / 255) * 100}%` }}
+                      >
+                        {stat.base_stat}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="pokemon-info">
+        <div style={{ marginRight: "10px", marginLeft: "10px", width: "100%" }}>
+          <hr style={{ marginBlock: "10px" }} />
+          {pokemonDesc.flavor_text_entries &&
+            pokemonDesc.flavor_text_entries[0].flavor_text}{" "}
+        </div>
+        <div className="types">{getTypes(pokemon)}</div>
+      </div>
+
+      {/* <header className="card-header">
         ID: {pokemon.id}
         <select
           value={selectValue}
@@ -103,20 +145,10 @@ const PokeInfo = () => {
           {pokeList(pokemon.id)}
         </select>
         <div className="types">{getTypes(pokemon)}</div>
-      </header>
-      <div className="mainCard">
+      </header> */}
+      {/* <div className="mainCard">
         <div style={{ height: "70%", width: "100%", display: "flex" }}>
-          <div className="imageCard">
-            <img
-              className="oneImg"
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-              alt=""
-            />
-            <div className="poke-weight">
-              <p style={{ borderBottom: "1px solid black" }}>Height & Weight</p>
-              <div>{(pokemon.height * 0.328).toFixed(2)} ft</div>
-              {pokemon.weight * 0.22} lb
-            </div>
+      
           </div>
           {pokemon.stats[0].base_stat !== 0 && (
             <div className="statRow">
@@ -152,7 +184,7 @@ const PokeInfo = () => {
             Next
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

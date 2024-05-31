@@ -125,7 +125,7 @@ export const fetchAllPokemonInfo = createAsyncThunk(
 );
 export const fetchAllPokemonDesc = createAsyncThunk(
   "pokemon/fetchAllPokemonDesc",
-  async (id: string) => {
+  async (id: string | number) => {
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${id}`
