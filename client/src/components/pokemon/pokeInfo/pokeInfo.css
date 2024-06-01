@@ -1,70 +1,71 @@
-/* .mainCard {
+.pokemon-card-container {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0 0 11px 5px rgba(50, 50, 50, 0.2);
-  background-color: #ff0000e3;
-  width: 700px;
-  height: 600px;
-  padding: 24px;
-} */
-
-/* .card-header {
-  width: 700px;
-  height: 5vh;
-  border: 1px solid black;
-  background-color: lightgray;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-} */
-
-.container1 {
-  display: flex;
-  /* flex-direction: column; */
   padding-top: 20px;
   height: 100%;
   padding-left: 24px;
   padding-right: 24px;
   gap: 16px;
+  max-width: 1100px;
+  margin: auto;
+  background-color: rgb(255, 255, 255);
 }
 
 .pokemon-main {
   display: flex;
   flex: 1;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
 }
 
-.oneImg {
-  /* height: 20px; */
-  /* min-width: 6rem; */
-  height: 400px;
+.pokemon-image {
+  height: 380px;
+  width: 320px;
 }
 
-/* .imageCard {
+.imageCard {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-/* height: 100%; */
-/* width: 100%; */
-/* flex: 1; */
+  gap: 24px;
+}
 
 .poke-weight {
   display: flex;
-  align-items: center;
-  margin: auto;
+  padding: 24px;
+
   flex-direction: column;
-  width: 7rem;
   background-color: lightgray;
+}
+
+.stat-header {
+  padding-bottom: 4px;
+}
+
+.weight-header {
+  margin-top: 18px;
+}
+
+.ability-name {
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .pokemon-info {
   display: flex;
   flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 24px;
 }
+.pokemon-types-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pokemon-types {
+  display: flex;
+}
+
 .test {
   display: flex;
   justify-content: space-between;
@@ -75,10 +76,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 4px;
 }
 
 .stats1 {
   margin-right: 0.5rem;
+  font-size: 1.5em;
 }
 
 .stats {
@@ -89,8 +92,8 @@
 .progressBar {
   background-color: black;
   border-radius: 13px;
-  width: 9rem;
-  max-width: 15rem;
+  width: 19rem;
+  /* max-width: 15rem; */
   padding: 2px;
   margin-top: 5px;
 }
@@ -119,15 +122,6 @@
 .grass,
 .steel,
 .fairy {
-  float: right;
-  border: 1px solid black;
-  border-radius: 50%;
-  padding: 1px;
-  width: 40px;
-  font-size: 10px;
-  font-weight: bold;
-  margin-right: 5px;
-  text-align: center;
 }
 .fighting {
   background-color: #c22e28
@@ -186,9 +180,23 @@
   background-color: #a8a77a;
 }
 
+.poketype {
+  /* float: right; */
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 1px;
+  /* color: white; */
+  width: 130px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: center;
+  display: block;
+}
+
 @media (min-width: 700px) {
   .progressBar {
-    width: 12rem;
+    /* width: 12rem; */
     /* max-width: 15rem; */
   }
 }

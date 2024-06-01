@@ -5,26 +5,21 @@ import { getTypes } from "../../../helperFunctions/pokemonInfo";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import {
-  fetchAllPokemon,
   fetchAllPokemonDesc,
   fetchAllPokemonInfo,
-  fetchSecondGenPokemon,
-  fetchThirdGenPokemon,
 } from "../../../redux/slices/pokemonSlice";
 import { id } from "../../../interfaces/interfaces";
 
 const PokeInfo = () => {
-  const {
-    pokemonInfo: pokemon,
-    pokemonDesc,
-    pokemon: allPokemon,
-    secondGen,
-    thirdGen,
-  } = useAppSelector((state: RootState) => state.pokemon);
+  const { pokemonInfo: pokemon, pokemonDesc } = useAppSelector(
+    (state: RootState) => state.pokemon
+  );
 
   const dispatch = useAppDispatch();
   let { id } = useParams<id>();
   const [selectValue, setSelectValue] = useState(pokemon.name);
+
+  const [ability, setAbilility] = useState<any>({});
 
   const catchSinglePokemon = async (id: any) => {
     await dispatch(fetchAllPokemonInfo(id));
@@ -51,140 +46,82 @@ const PokeInfo = () => {
     const getPokemonDesc = async (id: string) => {
       await dispatch(fetchAllPokemonDesc(id));
     };
-    const getAllPokemon = async () => {
-      await dispatch(fetchAllPokemon());
-    };
+
     catchSinglePokemon(id);
     getPokemonDesc(id);
-    getAllPokemon();
   }, [id, dispatch]);
 
-  const secondGen1 = async () => {
-    await dispatch(fetchSecondGenPokemon());
-    await dispatch(fetchThirdGenPokemon());
-  };
-
   useEffect(() => {
-    secondGen1();
-    setSelectValue(pokemon.name);
-  }, [pokemon.name]);
+    if (!pokemon) return;
 
-  const pokeList = (id: any) => {
-    if (id <= 151)
-      return allPokemon.map((poke, index) => (
-        <option key={index} value={poke.name}>
-          {poke.name}
-        </option>
-      ));
-    if (id > 151 && id <= 251)
-      return secondGen.map((poke, index) => (
-        <option key={index} value={poke.name}>
-          {poke.name}
-        </option>
-      ));
-    if (id > 251)
-      return thirdGen.map((poke, index) => (
-        <option key={index} value={poke.name}>
-          {poke.name}
-        </option>
-      ));
-  };
+    const pokemonAbility = async () => {
+      const result = await fetch(pokemon.abilities[0].ability.url);
+      const res = await result.json();
+      setAbilility(res);
+    };
+    pokemonAbility();
+  }, [pokemon]);
 
-  //   <div className="poke-weight">
-  //   <p style={{ borderBottom: "1px solid black" }}>Height & Weight</p>
-  //   <div>{(pokemon.height * 0.328).toFixed(2)} ft</div>
-  //   {pokemon.weight * 0.22} lb
+  //   <div className="btn-container">
+  //   <button className="btn" onClick={() => previousPokemon(pokemon.id)}>
+  //     Previous
+  //   </button>
+  //   <button className="btn" onClick={() => nextPokemon(pokemon.id)}>
+  //     Next
+  //   </button>
   // </div>
   return (
-    <div className="container1">
+    <div className="pokemon-card-container">
       <div className="pokemon-main">
-        <div className="imageCard">
-          <img
-            className="oneImg"
-            src={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`}
-            alt=""
-          />
-          {pokemon.stats[0].base_stat !== 0 && (
-            <div className="statRow">
-              {pokemon.stats.map((stat) => {
-                return (
-                  <div className="test" key={stat.stat.name}>
-                    <div className="stats1">{stat.stat.name}</div>
-                    <div className="progressBar">
-                      <div
-                        className="stats"
-                        style={{ width: `${(stat.base_stat / 255) * 100}%` }}
-                      >
-                        {stat.base_stat}
-                      </div>
+        <img
+          className="pokemon-image"
+          src={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`}
+          alt=""
+        />
+        {pokemon.stats[0].base_stat !== 0 && (
+          <div className="statRow">
+            <h2>Stats</h2>
+            {pokemon.stats.map((stat) => {
+              return (
+                <div className="test" key={stat.stat.name}>
+                  <div className="stats1">{stat.stat.name}</div>
+                  <div className="progressBar">
+                    <div
+                      className="stats"
+                      style={{ width: `${(stat.base_stat / 255) * 100}%` }}
+                    >
+                      {stat.base_stat}
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
       <div className="pokemon-info">
-        <div style={{ marginRight: "10px", marginLeft: "10px", width: "100%" }}>
-          <hr style={{ marginBlock: "10px" }} />
+        <div className="pokemon-description">
           {pokemonDesc.flavor_text_entries &&
             pokemonDesc.flavor_text_entries[0].flavor_text}{" "}
         </div>
-        <div className="types">{getTypes(pokemon)}</div>
+
+        <div className="poke-weight">
+          <h4 className="stat-header">Height</h4>
+          <p> {(pokemon.height * 0.328).toFixed(2)} ft</p>
+          <h4 className="stat-header weight-header ">Weight</h4>
+          <p> {pokemon.weight * 0.22} lb</p>
+          <h4 className="stat-header weight-header ">Abilities</h4>
+          <p className="ability-name">{ability.name}</p>
+          <p>
+            {ability.effect_entries && ability.effect_entries[0].short_effect}
+          </p>
+        </div>
+
+        <div className="pokemon-types-container">
+          <h2>Types</h2>
+          <div className="pokemon-types">{getTypes(pokemon)}</div>
+        </div>
       </div>
-
-      {/* <header className="card-header">
-        ID: {pokemon.id}
-        <select
-          value={selectValue}
-          name="name"
-          id="name"
-          onChange={(e) => change(e)}
-        >
-          {pokeList(pokemon.id)}
-        </select>
-        <div className="types">{getTypes(pokemon)}</div>
-      </header> */}
-      {/* <div className="mainCard">
-        <div style={{ height: "70%", width: "100%", display: "flex" }}>
-      
-          </div>
-          {pokemon.stats[0].base_stat !== 0 && (
-            <div className="statRow">
-              {pokemon.stats.map((stat) => {
-                return (
-                  <div className="test" key={stat.stat.name}>
-                    <div className="stats1">{stat.stat.name}</div>
-                    <div className="progressBar">
-                      <div
-                        className="stats"
-                        style={{ width: `${(stat.base_stat / 255) * 100}%` }}
-                      >
-                        {stat.base_stat}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-
-        <div style={{ marginRight: "10px", marginLeft: "10px", width: "100%" }}>
-          <hr style={{ marginBlock: "10px" }} />
-          {pokemonDesc.flavor_text_entries &&
-            pokemonDesc.flavor_text_entries[0].flavor_text}{" "}
-        </div>
-        <div className="btn-container">
-          <button className="btn" onClick={() => previousPokemon(pokemon.id)}>
-            Previous
-          </button>
-          <button className="btn" onClick={() => nextPokemon(pokemon.id)}>
-            Next
-          </button>
-        </div>
-      </div> */}
     </div>
   );
 };

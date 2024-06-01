@@ -21,115 +21,109 @@ export const getTypes = (pokemon: IOnePokemon) => {
     pokemon.types.map(({ type }) => {
       if (type.name === "fighting")
         return (
-          <span key={type.name + "A"} className="fighting">
+          <span key={type.name + "A"} className="fighting poketype">
             {type.name}
           </span>
         );
       if (type.name === "fire")
         return (
-          <span key={type.name + "B"} className="fire">
+          <span key={type.name + "B"} className="fire poketype">
             {type.name}
           </span>
         );
       if (type.name === "water")
         return (
-          <span key={type.name + "C"} className="water">
+          <span key={type.name + "C"} className="water poketype">
             {type.name}
           </span>
         );
       if (type.name === "ground")
         return (
-          <span key={type.name + "D"} className="ground">
+          <span key={type.name + "D"} className="ground poketype">
             {type.name}
           </span>
         );
       if (type.name === "rock")
         return (
-          <span key={type.name + "E"} className="rock">
+          <span key={type.name + "E"} className="rock poketype">
             {type.name}
           </span>
         );
       if (type.name === "ghost")
         return (
-          <span key={type.name + "F"} className="ghost">
+          <span key={type.name + "F"} className="ghost poketype">
             {type.name}
           </span>
         );
       if (type.name === "bug")
         return (
-          <span key={type.name + "2"} className="bug">
+          <span key={type.name + "2"} className="bug poketype">
             {type.name}
           </span>
         );
       if (type.name === "poison")
         return (
-          <span key={type.name + "G"} className="poison">
+          <span key={type.name + "G"} className="poison poketype">
             {type.name}
           </span>
         );
       if (type.name === "grass")
         return (
-          <span key={type.name + "H"} className="grass">
+          <span key={type.name + "H"} className="grass poketype">
             {type.name}
           </span>
         );
       if (type.name === "steel")
         return (
-          <span key={type.name + "I"} className="steel">
+          <span key={type.name + "I"} className="steel poketype">
             {type.name}
           </span>
         );
       if (type.name === "fairy")
         return (
-          <span key={type.name + "J"} className="fairy">
+          <span key={type.name + "J"} className="fairy poketype">
             {type.name}
           </span>
         );
       if (type.name === "ice")
         return (
-          <span key={type.name + "1"} className="ice">
+          <span key={type.name + "1"} className="ice poketype">
             {type.name}
           </span>
         );
       if (type.name === "dragon")
         return (
-          <span key={type.name + "K"} className="dragon">
+          <span key={type.name + "K"} className="dragon poketype">
             {type.name}
           </span>
         );
       if (type.name === "dark")
         return (
-          <span key={type.name + "L"} className="dark">
+          <span key={type.name + "L"} className="dark poketype">
             {type.name}
           </span>
         );
       if (type.name === "psychic")
         return (
-          <span key={type.name + "3"} className="psychic">
+          <span key={type.name + "3"} className="psychic poketype">
             {type.name}
           </span>
         );
       if (type.name === "flying")
         return (
-          <span key={type.name + "M"} className="flying">
+          <span key={type.name + "M"} className="flying poketype">
             {type.name}
           </span>
         );
       if (type.name === "electric")
         return (
-          <span key={type.name + "N"} className="electric">
+          <span key={type.name + "N"} className="electric poketype">
             {type.name}
           </span>
         );
       if (type.name === "normal")
         return (
-          <span key={type.name + "O"} className="normal">
-            {type.name}
-          </span>
-        );
-      if (type.name === "fairy")
-        return (
-          <span key={type.name + "P"} className="fairy">
+          <span key={type.name + "O"} className="normal poketype">
             {type.name}
           </span>
         );

@@ -36,6 +36,7 @@ const initialState: PokemonState = {
       {
         ability: {
           name: "",
+          url: "",
         },
       },
       {
@@ -117,6 +118,7 @@ export const fetchAllPokemonInfo = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
       return response.json();
     } catch (e) {
       console.log(e);
@@ -129,6 +131,20 @@ export const fetchAllPokemonDesc = createAsyncThunk(
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${id}`
+      );
+      return response.json();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+);
+
+export const fetchPokemonEvolutions = createAsyncThunk(
+  "pokemon/fetchEveolutions",
+  async (id: string | number) => {
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/evolution-chain/${id}`
       );
       return response.json();
     } catch (e) {

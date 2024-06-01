@@ -16,6 +16,7 @@ export interface IOnePokemon {
     {
       ability: {
         name: string;
+        url: string;
       };
     },
     {
