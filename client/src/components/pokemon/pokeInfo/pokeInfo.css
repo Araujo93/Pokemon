@@ -1,9 +1,7 @@
 .pokemon-card-container {
   display: flex;
-  padding-top: 20px;
-  height: 100%;
-  padding-left: 24px;
-  padding-right: 24px;
+  flex-direction: column;
+  padding: 24px;
   gap: 16px;
   max-width: 1100px;
   margin: auto;
@@ -13,25 +11,22 @@
 .pokemon-main {
   display: flex;
   flex: 1;
-  flex-direction: column;
   align-items: center;
+  gap: 48px;
 }
 
 .pokemon-image {
   height: 380px;
-  width: 320px;
+  width: 50%;
 }
 
-.imageCard {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.pokemon-description {
+  width: 50%;
 }
 
 .poke-weight {
   display: flex;
   padding: 24px;
-
   flex-direction: column;
   background-color: lightgray;
 }
@@ -52,10 +47,17 @@
 .pokemon-info {
   display: flex;
   flex: 1;
-  flex-direction: column;
-  gap: 24px;
+  gap: 48px;
   padding-top: 24px;
 }
+
+.statRow {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 4px;
+}
+
 .pokemon-types-container {
   display: flex;
   flex-direction: column;
@@ -64,19 +66,14 @@
 
 .pokemon-types {
   display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .test {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.statRow {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
 }
 
 .stats1 {
@@ -93,7 +90,6 @@
   background-color: black;
   border-radius: 13px;
   width: 19rem;
-  /* max-width: 15rem; */
   padding: 2px;
   margin-top: 5px;
 }
@@ -181,15 +177,13 @@
 }
 
 .poketype {
-  /* float: right; */
   border: 1px solid black;
   border-radius: 8px;
   padding: 1px;
-  /* color: white; */
   width: 130px;
-  font-size: 14px;
+  height: 25px;
+  font-size: 16px;
   font-weight: bold;
-  margin-right: 5px;
   text-align: center;
   display: block;
 }
@@ -212,4 +206,28 @@
   width: 80px;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.pokemon-evo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  height: 100%;
+}
+
+.pokemon-evo-image {
+  height: 200px;
+}
+
+.tester {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.pokemon-evo {
+  text-align: center;
 }

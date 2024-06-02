@@ -10,6 +10,7 @@ export interface PokemonState {
   thirdGen: IPokemon[];
   pokemonInfo: IOnePokemon;
   pokemonDesc: IDescription;
+  pokemonEvo: any;
 }
 
 const initialState: PokemonState = {
@@ -82,6 +83,7 @@ const initialState: PokemonState = {
       },
     ],
   },
+  pokemonEvo: {},
 };
 
 export const fetchAllPokemon = createAsyncThunk(
@@ -172,6 +174,9 @@ export const pokemonSlice = createSlice({
     });
     builder.addCase(fetchAllPokemonDesc.fulfilled, (state, action) => {
       state.pokemonDesc = action.payload;
+    });
+    builder.addCase(fetchPokemonEvolutions.fulfilled, (state, action) => {
+      state.pokemonEvo = action.payload;
     });
   },
 });
