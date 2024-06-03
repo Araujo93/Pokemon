@@ -51,7 +51,7 @@ const PokeInfo = () => {
     const getPokemonEvo = async (id: string) => {
       await dispatch(fetchPokemonEvolutions(id));
     };
-    catchSinglePokemon(id);
+    catchSinglePokemon(+id);
 
     getPokemonDesc(id);
     getPokemonEvo(id);

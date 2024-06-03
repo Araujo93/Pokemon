@@ -117,7 +117,7 @@ export const fetchThirdGenPokemon = createAsyncThunk(
 
 export const fetchAllPokemonInfo = createAsyncThunk(
   "pokemon/fetchAllPokemonInfo",
-  async (id: string) => {
+  async (id: number) => {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
