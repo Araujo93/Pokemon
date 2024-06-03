@@ -1,6 +1,8 @@
 import { IOnePokemon } from "../interfaces/interfaces";
 import pokemon_types from "../types/pokemon_types.json";
 
+import { PokemonStrAndWeak } from "../interfaces/pokemon";
+
 export const getFrontImg = (url: string) => {
   const index = url.split("/")[url.split("/").length - 2];
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
@@ -16,19 +18,19 @@ export const getIndex = (url: string) => {
   return index;
 };
 
-export const getWeakness = (pokemon: IOnePokemon, strOrWeak) => {
+export const getWeakness = (pokemon: IOnePokemon, strOrWeak: string) => {
   if (pokemon.types && pokemon.types[0].type.name) {
     const types = pokemon.types.map((type) => type.type.name);
     if (types) {
-      const weaknesses = getMultipliers(types);
+      const weaknesses: PokemonStrAndWeak = getMultipliers(types);
 
       if (strOrWeak === "weak") {
-        const pokemonTypes = Object.keys(weaknesses.defense);
+        const pokemonTypes: string[] = Object.keys(weaknesses.defense);
 
         return (
           pokemonTypes.length > 0 &&
-          pokemonTypes.map((type: any) => {
-            if (type === "fighting" && (weaknesses.defense[type] as any) >= 2)
+          pokemonTypes.map((type: string) => {
+            if (type === "fighting" && weaknesses.defense[type] >= 2)
               return (
                 <span key={type + "A"} className="fighting poketype">
                   {type}
@@ -146,110 +148,110 @@ export const getWeakness = (pokemon: IOnePokemon, strOrWeak) => {
 
         return (
           pokemonTypes.length > 0 &&
-          pokemonTypes.map((type: any) => {
-            if (type === "fighting" && (weaknesses.attack[type] as any) >= 2)
+          pokemonTypes.map((type: string) => {
+            if (type === "fighting" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "A"} className="fighting poketype">
                   {type}
                 </span>
               );
-            if (type === "fire" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "fire" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "B"} className="fire poketype">
                   {type}
                 </span>
               );
-            if (type === "water" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "water" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "C"} className="water poketype">
                   {type}
                 </span>
               );
-            if (type === "ground" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "ground" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "D"} className="ground poketype">
                   {type}
                 </span>
               );
-            if (type === "rock" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "rock" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "E"} className="rock poketype">
                   {type}
                 </span>
               );
-            if (type === "ghost" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "ghost" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "F"} className="ghost poketype">
                   {type}
                 </span>
               );
-            if (type === "bug" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "bug" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "2"} className="bug poketype">
                   {type}
                 </span>
               );
-            if (type === "poison" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "poison" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "G"} className="poison poketype">
                   {type}
                 </span>
               );
-            if (type === "grass" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "grass" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "H"} className="grass poketype">
                   {type}
                 </span>
               );
-            if (type === "steel" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "steel" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "I"} className="steel poketype">
                   {type}
                 </span>
               );
-            if (type === "fairy" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "fairy" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "J"} className="fairy poketype">
                   {type}
                 </span>
               );
-            if (type === "ice" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "ice" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "1"} className="ice poketype">
                   {type}
                 </span>
               );
-            if (type === "dragon" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "dragon" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "K"} className="dragon poketype">
                   {type}
                 </span>
               );
-            if (type === "dark" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "dark" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "L"} className="dark poketype">
                   {type}
                 </span>
               );
-            if (type === "psychic" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "psychic" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "3"} className="psychic poketype">
                   {type}
                 </span>
               );
-            if (type === "flying" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "flying" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "M"} className="flying poketype">
                   {type}
                 </span>
               );
-            if (type === "electric" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "electric" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "N"} className="electric poketype">
                   {type}
                 </span>
               );
-            if (type === "normal" && (weaknesses.attack[type] as any) >= 2)
+            if (type === "normal" && weaknesses.attack[type] >= 2)
               return (
                 <span key={type + "O"} className="normal poketype">
                   {type}
@@ -386,12 +388,12 @@ export const getTypes = (pokemon: IOnePokemon) => {
 
 ////////////////////////////////////
 
-export default function getMultipliers(types) {
-  var multipliers = {
+export default function getMultipliers(types: any) {
+  var multipliers: any = {
     defense: {},
     attack: {},
   };
-  types.forEach((type) => {
+  types.forEach((type: string) => {
     var damage_relations = pokemon_types[type as keyof typeof pokemon_types];
     var no_damage_to = damage_relations.attack.zero;
     var no_damage_from = damage_relations.defense.zero;
@@ -399,7 +401,7 @@ export default function getMultipliers(types) {
     var half_damage_from = damage_relations.defense.half;
     var double_damage_to = damage_relations.attack.double;
     var double_damage_from = damage_relations.defense.double;
-    no_damage_to.forEach((type) => {
+    no_damage_to.forEach((type: string) => {
       if (multipliers.attack.hasOwnProperty(type)) {
         multipliers.attack[type] = multipliers.attack[type] * 0;
       } else {
@@ -450,7 +452,6 @@ export const getEvoltionChain = (evolutions: any) => {
   const result = [];
   result.push(evolutions.species);
 
-  console.log(evolutions, "evolutions");
   let tester = evolutions.evolves_to[0];
   while (tester.evolves_to?.length > 0) {
     result.push(tester.species);

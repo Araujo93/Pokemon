@@ -24,23 +24,16 @@ const PokeInfo = () => {
 
   const dispatch = useAppDispatch();
   let { id } = useParams<id>();
-  const [selectValue, setSelectValue] = useState(pokemon.name);
 
   const [evolutions, setEvolutions] = useState<any>([]);
 
   const [ability, setAbilility] = useState<any>({});
 
-  const catchSinglePokemon = async (id: any) => {
+  const catchSinglePokemon = async (id: number) => {
     await dispatch(fetchAllPokemonInfo(id));
   };
 
-  const change = async (e: any) => {
-    setSelectValue(e.target.value);
-    await catchSinglePokemon(e.target.value);
-    await dispatch(fetchAllPokemonDesc(e.target.value));
-  };
-
-  const nextPokemon = async (id: any) => {
+  const nextPokemon = async (id: number) => {
     await catchSinglePokemon(id + 1);
     await dispatch(fetchAllPokemonDesc(id + 1));
   };
@@ -58,8 +51,8 @@ const PokeInfo = () => {
     const getPokemonEvo = async (id: string) => {
       await dispatch(fetchPokemonEvolutions(id));
     };
-
     catchSinglePokemon(id);
+
     getPokemonDesc(id);
     getPokemonEvo(id);
   }, [id, dispatch]);
@@ -80,6 +73,9 @@ const PokeInfo = () => {
   return (
     <>
       <div className="pokemon-card-container">
+        <h1 className="pokemon-header">
+          {pokemon.name} <span className="pokemon-id"> #{pokemon.id}</span>
+        </h1>
         <div className="pokemon-main">
           <img
             className="pokemon-image"
@@ -137,12 +133,13 @@ const PokeInfo = () => {
             <div className="pokemon-types ">{getWeakness(pokemon, "str")}</div>
           </div>
         </div>
+
         <div className="pokemon-evo-container">
-          <h2>Evolutions</h2>
+          <h2 className="evolution-header">Evolutions</h2>
           <div className="tester">
             {evolutions &&
-              evolutions.map((el) => (
-                <div className="pokemon-evo">
+              evolutions.map((el: any) => (
+                <div className="pokemon-evo" key={el.name}>
                   <img
                     className="pokemon-evo-image"
                     src={`https://img.pokemondb.net/artwork/large/${el.name}.jpg`}
@@ -152,6 +149,20 @@ const PokeInfo = () => {
                 </div>
               ))}
           </div>
+        </div>
+        <div className="div btn-container">
+          <button
+            className="btn"
+            onClick={() => previousPokemon(pokemon.id ? pokemon.id : +id)}
+          >
+            Previous{" "}
+          </button>
+          <button
+            className="btn"
+            onClick={() => nextPokemon(pokemon.id ? pokemon.id : +id)}
+          >
+            Next{" "}
+          </button>
         </div>
       </div>
     </>
