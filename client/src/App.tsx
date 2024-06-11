@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import {
   fetchSecondGenPokemon,
   fetchThirdGenPokemon,
-  fetchAllPokemon,
+  fetchFirstGenPokemon,
 } from "./redux/slices/pokemonSlice";
 
 import LoginUser from "./components/auth/LoginUser";
@@ -25,7 +25,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     const getFirstGenPokemon = async () => {
-      await dispatch(fetchAllPokemon());
+      await dispatch(fetchFirstGenPokemon());
     };
     const getSecondGenPokemon = async () => {
       await dispatch(fetchSecondGenPokemon());

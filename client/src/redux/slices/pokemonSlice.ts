@@ -86,7 +86,7 @@ const initialState: PokemonState = {
   pokemonEvo: {},
 };
 
-export const fetchAllPokemon = createAsyncThunk(
+export const fetchFirstGenPokemon = createAsyncThunk(
   "pokemon/fetchAllPokemon",
   async () => {
     const response = await fetch(
@@ -115,7 +115,7 @@ export const fetchThirdGenPokemon = createAsyncThunk(
   }
 );
 
-export const fetchAllPokemonInfo = createAsyncThunk(
+export const fetchPokemonInfo = createAsyncThunk(
   "pokemon/fetchAllPokemonInfo",
   async (id: number) => {
     try {
@@ -127,7 +127,7 @@ export const fetchAllPokemonInfo = createAsyncThunk(
     }
   }
 );
-export const fetchAllPokemonDesc = createAsyncThunk(
+export const fetchPokemonDesc = createAsyncThunk(
   "pokemon/fetchAllPokemonDesc",
   async (id: string | number) => {
     try {
@@ -145,10 +145,19 @@ export const fetchPokemonEvolutions = createAsyncThunk(
   "pokemon/fetchEveolutions",
   async (id: string | number) => {
     try {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/evolution-chain/${id}`
+      const pokeResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${id}`
       );
-      return response.json();
+
+      if (pokeResponse) {
+        const pokeData = await pokeResponse.json();
+
+        const evolutionUrl = pokeData.evolution_chain.url;
+
+        const evoResponse = await fetch(evolutionUrl);
+        // console.log(await evoResponse.json(), "evoResponse.json()");
+        return evoResponse.json();
+      }
     } catch (e) {
       console.log(e);
     }
@@ -160,7 +169,7 @@ export const pokemonSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAllPokemon.fulfilled, (state, action) => {
+    builder.addCase(fetchFirstGenPokemon.fulfilled, (state, action) => {
       state.pokemon = action.payload.results;
     });
     builder.addCase(fetchSecondGenPokemon.fulfilled, (state, action) => {
@@ -169,10 +178,10 @@ export const pokemonSlice = createSlice({
     builder.addCase(fetchThirdGenPokemon.fulfilled, (state, action) => {
       state.thirdGen = action.payload.results;
     });
-    builder.addCase(fetchAllPokemonInfo.fulfilled, (state, action) => {
+    builder.addCase(fetchPokemonInfo.fulfilled, (state, action) => {
       state.pokemonInfo = action.payload;
     });
-    builder.addCase(fetchAllPokemonDesc.fulfilled, (state, action) => {
+    builder.addCase(fetchPokemonDesc.fulfilled, (state, action) => {
       state.pokemonDesc = action.payload;
     });
     builder.addCase(fetchPokemonEvolutions.fulfilled, (state, action) => {

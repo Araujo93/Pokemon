@@ -9,11 +9,12 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import {
-  fetchAllPokemonDesc,
-  fetchAllPokemonInfo,
+  fetchPokemonDesc,
+  fetchPokemonInfo,
   fetchPokemonEvolutions,
 } from "../../../redux/slices/pokemonSlice";
 import { id } from "../../../interfaces/interfaces";
+import { useHistory } from "react-router-dom";
 
 const PokeInfo = () => {
   const {
@@ -24,29 +25,33 @@ const PokeInfo = () => {
 
   const dispatch = useAppDispatch();
   let { id } = useParams<id>();
+  const history = useHistory();
 
   const [evolutions, setEvolutions] = useState<any>([]);
 
   const [ability, setAbilility] = useState<any>({});
 
   const catchSinglePokemon = async (id: number) => {
-    await dispatch(fetchAllPokemonInfo(id));
+    await dispatch(fetchPokemonInfo(id));
   };
 
   const nextPokemon = async (id: number) => {
     await catchSinglePokemon(id + 1);
-    await dispatch(fetchAllPokemonDesc(id + 1));
+    await dispatch(fetchPokemonDesc(id + 1));
+
+    history.replace(`/about/${id + 1}`);
   };
 
   const previousPokemon = async (id: any) => {
     await catchSinglePokemon(id - 1);
-    await dispatch(fetchAllPokemonDesc(id - 1));
+    await dispatch(fetchPokemonDesc(id - 1));
+    history.replace(`/about/${id - 1}`);
   };
 
   // Pokemon fetch for info and description
   useEffect(() => {
     const getPokemonDesc = async (id: string) => {
-      await dispatch(fetchAllPokemonDesc(id));
+      await dispatch(fetchPokemonDesc(id));
     };
     const getPokemonEvo = async (id: string) => {
       await dispatch(fetchPokemonEvolutions(id));
@@ -59,7 +64,6 @@ const PokeInfo = () => {
 
   useEffect(() => {
     if (!pokemon || !pokemonEvo) return;
-
     const pokemonAbility = async () => {
       const result = await fetch(pokemon.abilities[0].ability.url);
       const res = await result.json();
