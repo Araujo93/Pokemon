@@ -5,7 +5,7 @@ import { registerUser } from "../../redux/slices/userSlice";
 import { signInUser, guestLogin, reset } from "../../redux/slices/userSlice";
 import { IUser } from "../../interfaces/interfaces";
 import "./auth.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import Input from "../Input/Input";
 
@@ -73,10 +73,10 @@ const RegisterUser = () => {
           <button className="guest-button" onClick={() => guest()}>
             Continue as guest
           </button>
-          <Link onClick={() => dispatch(reset())} to={"/"}>
+          {/* <Link onClick={() => dispatch(reset())} to={"/"}>
             {" "}
             GO TO LOGIN
-          </Link>
+          </Link> */}
         </form>
       </div>
     </div>

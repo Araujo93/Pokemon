@@ -1,1 +1,43 @@
+body,
+html {
+  margin: 0;
+  background-color: red;
+}
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --nav-spacing: 20px;
+}
+
+.pokeId {
+  position: absolute;
+  z-index: 1;
+
+  margin-left: 10px;
+}
+a {
+  text-decoration: none;
+}
+
+.main-layout {
+  background: url("../public/images/pokeball_wallpaper.png") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  max-width: 1440px;
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.App {
+  height: 100vh;
+  width: 100%;
+}

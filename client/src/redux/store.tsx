@@ -1,13 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
 import pokemonReducer from "./slices/pokemonSlice";
 import userReducer from "./slices/userSlice";
 
-export const store = configureStore({
-  reducer: {
-    pokemon: pokemonReducer,
-    user: userReducer,
-  },
-});
+import { configureStore } from "@reduxjs/toolkit";
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const makeStore = () => {
+  return configureStore({
+    reducer: { pokemon: pokemonReducer, user: userReducer },
+  });
+};
+
+// Infer the type of makeStore
+export type AppStore = ReturnType<typeof makeStore>;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];

@@ -1,0 +1,17 @@
+.home-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 24px;
+  flex: 1;
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .home-container {
+    height: 100%;
+    display: flex;
+  }
+}

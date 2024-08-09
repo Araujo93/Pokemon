@@ -1,0 +1,31 @@
+.pokemon-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.pokemon-image:hover {
+  opacity: 0.6;
+}
+
+.pokemon-image {
+  width: 525px;
+  height: 400px;
+}
+
+@media (max-width: 1450px) {
+  .pokemon-image {
+    width: 500px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pokemon-image {
+    width: 400px;
+    height: 300px;
+    background-color: none;
+  }
+  .title {
+    font-size: 22px;
+  }
+}

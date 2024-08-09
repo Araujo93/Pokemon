@@ -1,22 +1,29 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import "./pokeInfo.css";
-import { useParams } from "react-router";
+
+// helperfunctions
 import {
   getEvoltionChain,
   getTypes,
   getWeakness,
 } from "../../../helperFunctions/pokemonInfo";
+
+// redux
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
+
+// slice
 import {
   fetchPokemonDesc,
   fetchPokemonInfo,
   fetchPokemonEvolutions,
 } from "../../../redux/slices/pokemonSlice";
-import { id } from "../../../interfaces/interfaces";
-import { useHistory } from "react-router-dom";
 
-const PokeInfo = () => {
+// css
+import "./pokeInfo.css";
+
+const PokeInfo = ({ id }) => {
   const {
     pokemonInfo: pokemon,
     pokemonDesc,
@@ -24,8 +31,6 @@ const PokeInfo = () => {
   } = useAppSelector((state: RootState) => state.pokemon);
 
   const dispatch = useAppDispatch();
-  let { id } = useParams<id>();
-  const history = useHistory();
 
   const [evolutions, setEvolutions] = useState<any>([]);
 
@@ -39,13 +44,13 @@ const PokeInfo = () => {
     await catchSinglePokemon(id + 1);
     await dispatch(fetchPokemonDesc(id + 1));
 
-    history.replace(`/about/${id + 1}`);
+    // history.replace(`/about/${id + 1}`);
   };
 
   const previousPokemon = async (id: any) => {
     await catchSinglePokemon(id - 1);
     await dispatch(fetchPokemonDesc(id - 1));
-    history.replace(`/about/${id - 1}`);
+    // history.replace(`/about/${id - 1}`);
   };
 
   // Pokemon fetch for info and description

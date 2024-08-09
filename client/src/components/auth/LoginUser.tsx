@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { useHistory } from "react-router";
@@ -76,11 +76,11 @@ const LoginUser = () => {
           <button className="guest-button" onClick={() => guest()}>
             Continue as guest
           </button>
-
+          {/* 
           <Link onClick={() => dispatch(reset())} to={"/register"}>
             {" "}
             GO TO REGISTER
-          </Link>
+          </Link> */}
         </form>
       </div>
     </div>

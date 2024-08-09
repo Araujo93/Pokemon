@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import Navlinks from "../Navlinks";
 import "../nav.css";
@@ -8,6 +9,7 @@ const MobileNavigation = () => {
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
+    console.log(hamburgerOpen);
   };
 
   return (
