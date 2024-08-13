@@ -1,7 +1,7 @@
 body,
 html {
   margin: 0;
-  background-color: red;
+  background-color: #d50000;
 }
 
 *,
@@ -10,10 +10,6 @@ html {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-:root {
-  --nav-spacing: 20px;
 }
 
 .pokeId {

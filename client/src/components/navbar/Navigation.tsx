@@ -4,7 +4,7 @@ import "./nav.css";
 
 const Navigation = () => {
   return (
-    <nav className="nav_big">
+    <nav className="navbar-desktop">
       <h1 className="logo">Poke World</h1>
       <Navlinks />
     </nav>

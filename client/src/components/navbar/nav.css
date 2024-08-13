@@ -1,24 +1,21 @@
-.menu {
+:root {
+  --nav-spacing: 20px;
+}
+
+.navbar-container {
   display: flex;
   align-items: center;
   height: 3rem;
-  background-color: yellow;
+  background-color: #ffff4c;
   z-index: 1;
-  /* margin-bottom: 2rem; */
+  padding: 0px 24px;
 }
 
-.nav_big {
+.navbar-desktop {
   align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
-
-.nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0 auto;
 }
 
 .logo {
@@ -26,28 +23,27 @@
   float: left;
   font-size: 26px;
 }
+
+.navbar-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .listItem {
   list-style: none;
   padding-right: 2rem;
   font-size: 20px;
 }
 
-.auth_btn {
-  margin-right: var(--nav-spacing);
-  padding: 2px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
-  background-color: blue;
-  font-size: 16px;
-}
-
-.auth_btn:hover {
-  background-color: red;
-}
-
 .listItem a:hover {
-  border-bottom: 5px solid blue;
+  color: blue;
+}
+
+.active {
+  font-weight: bold;
+  color: blue;
 }
 
 .mobile_nav {
@@ -55,7 +51,7 @@
 }
 
 @media (max-width: 767px) {
-  .nav_big {
+  .navbar-desktop {
     display: none;
   }
   .mobile_nav {
@@ -66,7 +62,7 @@
     z-index: 1;
   }
 
-  .nav {
+  .navbar-links {
     display: flex;
     flex-direction: column;
     margin-top: 200px;

@@ -4,6 +4,7 @@ import {
   IOnePokemon,
   IPokemon,
 } from "../../interfaces/interfaces";
+import { getEvoltionChain } from "src/helperFunctions/pokemonInfo";
 export interface PokemonState {
   pokemon: IPokemon[];
   secondGen: IPokemon[];
@@ -11,6 +12,7 @@ export interface PokemonState {
   pokemonInfo: IOnePokemon;
   pokemonDesc: IDescription;
   pokemonEvo: any;
+  pokemonAbililties: any;
 }
 
 const initialState: PokemonState = {
@@ -83,7 +85,8 @@ const initialState: PokemonState = {
       },
     ],
   },
-  pokemonEvo: {},
+  pokemonEvo: [],
+  pokemonAbililties: [],
 };
 
 export const fetchFirstGenPokemon = createAsyncThunk(
@@ -156,7 +159,26 @@ export const fetchPokemonEvolutions = createAsyncThunk(
 
         const evoResponse = await fetch(evolutionUrl);
         // console.log(await evoResponse.json(), "evoResponse.json()");
-        return evoResponse.json();
+        const res = await evoResponse.json();
+        const evolutions = getEvoltionChain(res.chain);
+        return evolutions;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+);
+
+export const fetchPokemonAbilities = createAsyncThunk(
+  "pokemon/fetchPokemonAbilities",
+  async (url: string) => {
+    try {
+      const pokeResponse = await fetch(url);
+
+      if (pokeResponse) {
+        const pokeData = await pokeResponse.json();
+        console.log(pokeData, "POKE DATA INZGO");
+        return pokeData;
       }
     } catch (e) {
       console.log(e);
@@ -186,6 +208,9 @@ export const pokemonSlice = createSlice({
     });
     builder.addCase(fetchPokemonEvolutions.fulfilled, (state, action) => {
       state.pokemonEvo = action.payload;
+    });
+    builder.addCase(fetchPokemonAbilities.fulfilled, (state, action) => {
+      state.pokemonAbililties = action.payload;
     });
   },
 });

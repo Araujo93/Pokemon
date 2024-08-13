@@ -1,174 +1,64 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-// helperfunctions
-import {
-  getEvoltionChain,
-  getTypes,
-  getWeakness,
-} from "../../../helperFunctions/pokemonInfo";
+// next
+import { useRouter } from "next/navigation";
 
-// redux
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { RootState } from "../../../redux/store";
+// hooks
+import { useGetEvolutions } from "src/hooks/useGetEvolutions";
 
-// slice
-import {
-  fetchPokemonDesc,
-  fetchPokemonInfo,
-  fetchPokemonEvolutions,
-} from "../../../redux/slices/pokemonSlice";
+// components
+import PokemonDescription from "./PokemonDescription";
+import PokeStatsAndTypes from "./PokeStatsAndTypes";
+import PokemonEvolutions from "./PokemonEvolutions";
 
 // css
 import "./pokeInfo.css";
 
 const PokeInfo = ({ id }) => {
-  const {
-    pokemonInfo: pokemon,
-    pokemonDesc,
-    pokemonEvo,
-  } = useAppSelector((state: RootState) => state.pokemon);
+  const { pokemonAbililties, pokemonDesc, pokemonEvo, pokemonInfo } =
+    useGetEvolutions({ id });
 
-  const dispatch = useAppDispatch();
-
-  const [evolutions, setEvolutions] = useState<any>([]);
-
-  const [ability, setAbilility] = useState<any>({});
-
-  const catchSinglePokemon = async (id: number) => {
-    await dispatch(fetchPokemonInfo(id));
-  };
+  const router = useRouter();
 
   const nextPokemon = async (id: number) => {
-    await catchSinglePokemon(id + 1);
-    await dispatch(fetchPokemonDesc(id + 1));
-
-    // history.replace(`/about/${id + 1}`);
+    router.replace(`/about/${id + 1}`);
   };
 
   const previousPokemon = async (id: any) => {
-    await catchSinglePokemon(id - 1);
-    await dispatch(fetchPokemonDesc(id - 1));
-    // history.replace(`/about/${id - 1}`);
+    router.replace(`/about/${id - 1}`);
   };
-
-  // Pokemon fetch for info and description
-  useEffect(() => {
-    const getPokemonDesc = async (id: string) => {
-      await dispatch(fetchPokemonDesc(id));
-    };
-    const getPokemonEvo = async (id: string) => {
-      await dispatch(fetchPokemonEvolutions(id));
-    };
-    catchSinglePokemon(+id);
-
-    getPokemonDesc(id);
-    getPokemonEvo(id);
-  }, [id, dispatch]);
-
-  useEffect(() => {
-    if (!pokemon || !pokemonEvo) return;
-    const pokemonAbility = async () => {
-      const result = await fetch(pokemon.abilities[0].ability.url);
-      const res = await result.json();
-      setAbilility(res);
-    };
-    const evolutions = getEvoltionChain(pokemonEvo.chain);
-    setEvolutions(evolutions);
-    pokemonAbility();
-  }, [pokemon, pokemonEvo]);
 
   return (
     <>
       <div className="pokemon-card-container">
         <h1 className="pokemon-header">
-          {pokemon.name} <span className="pokemon-id"> #{pokemon.id}</span>
+          {pokemonInfo.name}{" "}
+          <span className="pokemon-id"> #{pokemonInfo.id}</span>
         </h1>
-        <div className="pokemon-main">
-          <img
-            className="pokemon-image"
-            src={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`}
-            alt=""
-          />
-          <div className="pokemon-description">
-            {pokemonDesc.flavor_text_entries &&
-              pokemonDesc.flavor_text_entries[0].flavor_text}{" "}
-            <div className="poke-weight">
-              <h4 className="stat-header">Height</h4>
-              <p> {(pokemon.height * 0.328).toFixed(2)} ft</p>
-              <h4 className="stat-header weight-header ">Weight</h4>
-              <p> {pokemon.weight * 0.22} lb</p>
-              <h4 className="stat-header weight-header ">Abilities</h4>
-              <p className="ability-name">{ability.name}</p>
-              <p>
-                {ability.effect_entries &&
-                  ability.effect_entries[1].short_effect}
-              </p>
-            </div>
-          </div>
-        </div>
+        <PokemonDescription
+          pokemonInfo={pokemonInfo}
+          pokemonDesc={pokemonDesc}
+          pokemonAbililties={pokemonAbililties}
+        />
 
-        <div className="pokemon-info">
-          {pokemon.stats[0].base_stat !== 0 && (
-            <div className="statRow">
-              <h2>Stats</h2>
-              {pokemon.stats.map((stat) => {
-                return (
-                  <div className="test" key={stat.stat.name}>
-                    <div className="stats1">{stat.stat.name}</div>
-                    <div className="progressBar">
-                      <div
-                        className="stats"
-                        style={{ width: `${(stat.base_stat / 255) * 100}%` }}
-                      >
-                        {stat.base_stat}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+        <PokeStatsAndTypes pokemonInfo={pokemonInfo} />
 
-          <div className="pokemon-types-container">
-            <h2>Types</h2>
-            <div className="pokemon-types ">{getTypes(pokemon)}</div>
+        <PokemonEvolutions pokemonEvo={pokemonEvo} />
 
-            <h2>Weaknesses</h2>
-            <div className="pokemon-types ">{getWeakness(pokemon, "weak")}</div>
-
-            <h2>Strength</h2>
-            <div className="pokemon-types ">{getWeakness(pokemon, "str")}</div>
-          </div>
-        </div>
-
-        <div className="pokemon-evo-container">
-          <h2 className="evolution-header">Evolutions</h2>
-          <div className="tester">
-            {evolutions &&
-              evolutions.map((el: any) => (
-                <div className="pokemon-evo" key={el.name}>
-                  <img
-                    className="pokemon-evo-image"
-                    src={`https://img.pokemondb.net/artwork/large/${el.name}.jpg`}
-                    alt=""
-                  />
-                  <h2>{el.name}</h2>
-                </div>
-              ))}
-          </div>
-        </div>
         <div className="div btn-container">
           <button
             className="btn"
-            onClick={() => previousPokemon(pokemon.id ? pokemon.id : +id)}
+            onClick={() =>
+              previousPokemon(pokemonInfo.id ? pokemonInfo.id : +id)
+            }
           >
             Previous{" "}
           </button>
           <button
             className="btn"
-            onClick={() => nextPokemon(pokemon.id ? pokemon.id : +id)}
+            onClick={() => nextPokemon(pokemonInfo.id ? pokemonInfo.id : +id)}
           >
             Next{" "}
           </button>
@@ -177,5 +67,15 @@ const PokeInfo = ({ id }) => {
     </>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const { id } = ctx.query;
+
+  return {
+    props: {
+      id,
+    },
+  };
+}
 
 export default PokeInfo;

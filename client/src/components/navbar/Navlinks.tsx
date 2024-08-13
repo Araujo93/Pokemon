@@ -1,21 +1,44 @@
+"use client";
+
 // next
 import Link from "next/link";
 import "./nav.css";
 
+import { usePathname } from "next/navigation";
+
 const Navlinks = ({ hamburger }: any) => {
+  const pathName = usePathname();
+
   return (
-    <ul className="nav">
-      <li className="listItem">
-        <Link href="/">Home</Link>
+    <ul className="navbar-links">
+      <li className={`listItem `}>
+        <Link className={pathName === "/" ? "active" : ""} href="/">
+          Home
+        </Link>
       </li>
       <li className="listItem">
-        <Link href="/first-gen">Original</Link>
+        <Link
+          className={pathName === "/first-gen" ? "active" : ""}
+          href="/first-gen"
+        >
+          Original
+        </Link>
       </li>
       <li className="listItem">
-        <Link href="/second-gen">Second Gen</Link>
+        <Link
+          className={pathName === "/second-gen" ? "active" : ""}
+          href="/second-gen"
+        >
+          Second Gen
+        </Link>
       </li>
       <li className="listItem">
-        <Link href="/third-gen">Third Gen</Link>
+        <Link
+          className={pathName === "/third-gen" ? "active" : ""}
+          href="/third-gen"
+        >
+          Third Gen
+        </Link>
       </li>
     </ul>
   );

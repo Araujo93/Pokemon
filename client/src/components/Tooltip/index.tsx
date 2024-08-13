@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+// css
 import "./tooltip.css";
 
 const Tooltip = (props) => {

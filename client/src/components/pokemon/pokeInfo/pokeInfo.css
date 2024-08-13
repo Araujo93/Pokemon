@@ -3,8 +3,6 @@
   flex-direction: column;
   padding: 24px;
   gap: 32px;
-  max-width: 1100px;
-  margin: auto;
   background-color: rgb(255, 255, 255);
 }
 
@@ -23,7 +21,7 @@
   gap: 48px;
 }
 
-.pokemon-image {
+.pokemon-info-image {
   height: 380px;
   width: 50%;
 }
