@@ -1,7 +1,7 @@
 .pokemon-card-container {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 24px 100px;
   gap: 32px;
   background-color: rgb(255, 255, 255);
 }
@@ -18,7 +18,7 @@
   display: flex;
   flex: 1;
   align-items: center;
-  gap: 48px;
+  gap: 68px;
 }
 
 .pokemon-info-image {
@@ -56,7 +56,7 @@
 .pokemon-info {
   display: flex;
   flex: 1;
-  gap: 48px;
+  gap: 68px;
   padding-top: 24px;
 }
 
@@ -232,13 +232,14 @@
 }
 
 .pokemon-evo-image {
-  height: 200px;
+  height: 250px;
+  width: 200px;
 }
 
 .tester {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
 }

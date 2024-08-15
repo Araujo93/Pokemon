@@ -20,7 +20,7 @@ export default function RootLayout({
         <div className="main-layout">
           <StoreProvider>
             <Navbar />
-            <div id="root">{children}</div>
+            {children}
           </StoreProvider>
         </div>
       </body>

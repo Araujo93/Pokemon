@@ -1,7 +1,7 @@
 .pokemonList {
   position: relative;
   z-index: 0;
-  padding: 30px;
+  /* padding: 30px; */
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
