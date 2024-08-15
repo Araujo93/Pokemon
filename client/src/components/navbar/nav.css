@@ -16,12 +16,13 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  position: relative;
 }
 
 .logo {
-  margin-left: var(--nav-spacing);
-  float: left;
+  position: absolute;
   font-size: 26px;
+  left: 20;
 }
 
 .navbar-links {
