@@ -448,8 +448,8 @@ export default function getMultipliers(types: any) {
 }
 
 export const getEvoltionChain = (evolutions: any) => {
-  if (!evolutions || evolutions?.evolves_to.length <= 0) return;
-  const result = [];
+  if (!evolutions || evolutions?.evolves_to.length <= 0) return [];
+  const result = [] as any[];
   if (evolutions?.species) {
     result.push(evolutions.species);
   }
