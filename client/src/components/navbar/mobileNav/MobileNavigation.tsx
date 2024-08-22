@@ -9,7 +9,6 @@ const MobileNavigation = () => {
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
-    console.log(hamburgerOpen);
   };
 
   return (

@@ -9,11 +9,34 @@ import { IPokemon } from "../../interfaces/interfaces";
 // styles
 import "./pokemonList.css";
 
-const PokemonList = (props: { item: IPokemon[] }) => {
+import Loader from "../loader";
+
+type PokemonListProps = {
+  item: IPokemon[];
+  loading: boolean;
+};
+
+const PokemonList = ({ item, loading }: PokemonListProps) => {
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 200,
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="pokemonList">
-      {props.item &&
-        props.item.map((item: IPokemon, index) => (
+      {item &&
+        item.map((item: IPokemon, index) => (
           <PokeCard key={index} item={item} />
         ))}
       <h3

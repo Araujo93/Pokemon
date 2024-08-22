@@ -13,9 +13,13 @@ import { getEvoltionChain } from "src/helperFunctions/pokemonInfo";
 export const useGetEvolutions = ({ id }: any) => {
   const dispatch = useAppDispatch();
 
-  console.log(id, "ID IN GET EVOLS");
-  const { pokemonEvo, pokemonDesc, pokemonInfo, pokemonAbililties } =
-    useAppSelector((state: RootState) => state.pokemon);
+  const {
+    pokemonEvo,
+    pokemonDesc,
+    pokemonInfo,
+    pokemonAbililties,
+    pokemonInfoLoading,
+  } = useAppSelector((state: RootState) => state.pokemon);
 
   const catchSinglePokemon = async (id: number) => {
     await dispatch(fetchPokemonInfo(id));
@@ -38,7 +42,6 @@ export const useGetEvolutions = ({ id }: any) => {
 
   useEffect(() => {
     if (!pokemonInfo || pokemonEvo) return;
-    console.log(pokemonInfo, "PKE INFO");
     const getPokemonAbility = async (url: string) => {
       await dispatch(fetchPokemonAbilities(url));
     };
@@ -46,5 +49,11 @@ export const useGetEvolutions = ({ id }: any) => {
     getPokemonAbility(pokemonInfo.abilities[0].ability.url);
   }, [pokemonInfo]);
 
-  return { pokemonEvo, pokemonDesc, pokemonInfo, pokemonAbililties };
+  return {
+    pokemonEvo,
+    pokemonDesc,
+    pokemonInfo,
+    pokemonAbililties,
+    pokemonInfoLoading,
+  };
 };

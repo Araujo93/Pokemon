@@ -11,9 +11,9 @@ import useGetPokemon from "src/hooks/useGetPokemon";
 import "./styles.css";
 
 const FirstGenPokemon = () => {
-  const { pokemon } = useGetPokemon();
+  const { pokemon, loading } = useGetPokemon();
 
-  return <PokemonList item={pokemon} />;
+  return <PokemonList item={pokemon} loading={loading} />;
 };
 
 export default FirstGenPokemon;

@@ -12,23 +12,25 @@ import PokemonImage from "src/components/PokemonImage";
 const Home = () => {
   return (
     <div className="home-container ">
-      <PokemonImage
-        image={firstGenImg}
-        title={"Original 151"}
-        link={"first-gen"}
-      />
+      <div className="aa">
+        <PokemonImage
+          image={firstGenImg}
+          title={"Original 151"}
+          link={"first-gen"}
+        />
 
-      <PokemonImage
-        image={secondGenImg}
-        title={"Second Gen"}
-        link={"second-gen"}
-      />
+        <PokemonImage
+          image={secondGenImg}
+          title={"Second Gen"}
+          link={"second-gen"}
+        />
 
-      <PokemonImage
-        image={thirdGenImg}
-        title={"Third Gen"}
-        link={"third-gen"}
-      />
+        <PokemonImage
+          image={thirdGenImg}
+          title={"Third Gen"}
+          link={"third-gen"}
+        />
+      </div>
     </div>
   );
 };

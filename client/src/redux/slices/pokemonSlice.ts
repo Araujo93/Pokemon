@@ -13,9 +13,13 @@ export interface PokemonState {
   pokemonDesc: IDescription;
   pokemonEvo: any;
   pokemonAbililties: any;
+  loading: boolean;
+  pokemonInfoLoading: boolean;
 }
 
 const initialState: PokemonState = {
+  loading: true,
+  pokemonInfoLoading: true,
   pokemon: [
     {
       name: "",
@@ -177,7 +181,6 @@ export const fetchPokemonAbilities = createAsyncThunk(
 
       if (pokeResponse) {
         const pokeData = await pokeResponse.json();
-        console.log(pokeData, "POKE DATA INZGO");
         return pokeData;
       }
     } catch (e) {
@@ -191,26 +194,54 @@ export const pokemonSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchFirstGenPokemon.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchFirstGenPokemon.fulfilled, (state, action) => {
       state.pokemon = action.payload.results;
+      state.loading = false;
+    });
+    builder.addCase(fetchSecondGenPokemon.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(fetchSecondGenPokemon.fulfilled, (state, action) => {
       state.secondGen = action.payload.results;
+      state.loading = false;
+    });
+    builder.addCase(fetchThirdGenPokemon.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(fetchThirdGenPokemon.fulfilled, (state, action) => {
       state.thirdGen = action.payload.results;
+      state.loading = false;
+    });
+    builder.addCase(fetchPokemonInfo.pending, (state) => {
+      state.pokemonInfoLoading = true;
     });
     builder.addCase(fetchPokemonInfo.fulfilled, (state, action) => {
       state.pokemonInfo = action.payload;
+      state.pokemonInfoLoading = false;
+    });
+    builder.addCase(fetchPokemonDesc.pending, (state) => {
+      state.pokemonInfoLoading = true;
     });
     builder.addCase(fetchPokemonDesc.fulfilled, (state, action) => {
       state.pokemonDesc = action.payload;
+      state.pokemonInfoLoading = false;
+    });
+    builder.addCase(fetchPokemonEvolutions.pending, (state) => {
+      state.pokemonInfoLoading = true;
     });
     builder.addCase(fetchPokemonEvolutions.fulfilled, (state, action) => {
       state.pokemonEvo = action.payload;
+      state.pokemonInfoLoading = false;
+    });
+    builder.addCase(fetchPokemonAbilities.pending, (state) => {
+      state.pokemonInfoLoading = true;
     });
     builder.addCase(fetchPokemonAbilities.fulfilled, (state, action) => {
       state.pokemonAbililties = action.payload;
+      state.pokemonInfoLoading = false;
     });
   },
 });

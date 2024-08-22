@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "src/redux/hooks";
 import {
   fetchFirstGenPokemon,
@@ -9,9 +9,9 @@ import { RootState } from "src/redux/store";
 
 export default function useGetPokemon() {
   const dispatch = useAppDispatch();
-  const { pokemon } = useAppSelector((state: RootState) => state.pokemon);
-  const { secondGen } = useAppSelector((state: RootState) => state.pokemon);
-  const { thirdGen } = useAppSelector((state: RootState) => state.pokemon);
+  const { pokemon, loading, secondGen, thirdGen } = useAppSelector(
+    (state: RootState) => state.pokemon
+  );
 
   useEffect(() => {
     const getFirstGenPokemon = async () => {
@@ -28,5 +28,5 @@ export default function useGetPokemon() {
     getSecondGenPokemon();
   }, [dispatch]);
 
-  return { pokemon, secondGen, thirdGen };
+  return { pokemon, secondGen, thirdGen, loading };
 }

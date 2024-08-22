@@ -29,14 +29,22 @@ const PokeStatsAndTypes = ({ pokemonInfo }) => {
       )}
 
       <div className="pokemon-types-container">
-        <h2>Types</h2>
-        <div className="pokemon-types ">{getTypes(pokemonInfo)}</div>
-
-        <h2>Weaknesses</h2>
-        <div className="pokemon-types ">{getWeakness(pokemonInfo, "weak")}</div>
-
-        <h2>Strength</h2>
-        <div className="pokemon-types ">{getWeakness(pokemonInfo, "str")}</div>
+        <div className="types-container">
+          <h2>Types</h2>
+          <div className="pokemon-types ">{getTypes(pokemonInfo)}</div>
+        </div>
+        <div className="weakness-container">
+          <h2>Weaknesses</h2>
+          <div className="pokemon-types ">
+            {getWeakness(pokemonInfo, "weak")}
+          </div>
+        </div>
+        <div className="strength-container">
+          <h2>Strength</h2>
+          <div className="pokemon-types ">
+            {getWeakness(pokemonInfo, "str")}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -15,10 +15,16 @@ import PokemonEvolutions from "./PokemonEvolutions";
 
 // css
 import "./pokeInfo.css";
+import Loader from "src/components/loader";
 
 const PokeInfo = ({ id }) => {
-  const { pokemonAbililties, pokemonDesc, pokemonEvo, pokemonInfo } =
-    useGetEvolutions({ id });
+  const {
+    pokemonAbililties,
+    pokemonDesc,
+    pokemonEvo,
+    pokemonInfo,
+    pokemonInfoLoading,
+  } = useGetEvolutions({ id });
 
   const router = useRouter();
 
@@ -29,41 +35,55 @@ const PokeInfo = ({ id }) => {
   const previousPokemon = async (id: any) => {
     router.replace(`/about/${id - 1}`);
   };
-
   return (
     <>
-      <div className="pokemon-card-container">
-        <h1 className="pokemon-header">
-          {pokemonInfo.name}{" "}
-          <span className="pokemon-id"> #{pokemonInfo.id}</span>
-        </h1>
-        <PokemonDescription
-          pokemonInfo={pokemonInfo}
-          pokemonDesc={pokemonDesc}
-          pokemonAbililties={pokemonAbililties}
-        />
-
-        <PokeStatsAndTypes pokemonInfo={pokemonInfo} />
-
-        <PokemonEvolutions pokemonEvo={pokemonEvo} />
-
-        <div className="div btn-container">
-          <button
-            className="btn"
-            onClick={() =>
-              previousPokemon(pokemonInfo.id ? pokemonInfo.id : +id)
-            }
-          >
-            Previous{" "}
-          </button>
-          <button
-            className="btn"
-            onClick={() => nextPokemon(pokemonInfo.id ? pokemonInfo.id : +id)}
-          >
-            Next{" "}
-          </button>
+      {pokemonInfoLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 200,
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <Loader />
         </div>
-      </div>
+      ) : (
+        <div className="pokemon-card-container">
+          <h1 className="pokemon-header">
+            {pokemonInfo.name}{" "}
+            <span className="pokemon-id"> #{pokemonInfo.id}</span>
+          </h1>
+          <PokemonDescription
+            pokemonInfo={pokemonInfo}
+            pokemonDesc={pokemonDesc}
+            pokemonAbililties={pokemonAbililties}
+          />
+
+          <PokeStatsAndTypes pokemonInfo={pokemonInfo} />
+
+          <PokemonEvolutions pokemonEvo={pokemonEvo} />
+
+          <div className="div btn-container">
+            <button
+              className="btn"
+              onClick={() =>
+                previousPokemon(pokemonInfo.id ? pokemonInfo.id : +id)
+              }
+            >
+              Previous{" "}
+            </button>
+            <button
+              className="btn"
+              onClick={() => nextPokemon(pokemonInfo.id ? pokemonInfo.id : +id)}
+            >
+              Next{" "}
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

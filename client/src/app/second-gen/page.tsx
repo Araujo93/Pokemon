@@ -8,9 +8,9 @@ import PokemonList from "src/components/PokemonList";
 import useGetPokemon from "src/hooks/useGetPokemon";
 
 const SecondGenPokemon = () => {
-  const { secondGen } = useGetPokemon();
+  const { secondGen, loading } = useGetPokemon();
 
-  return <PokemonList item={secondGen} />;
+  return <PokemonList item={secondGen} loading={loading} />;
 };
 
 export default SecondGenPokemon;

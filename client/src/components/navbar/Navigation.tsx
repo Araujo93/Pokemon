@@ -5,8 +5,10 @@ import "./nav.css";
 const Navigation = () => {
   return (
     <nav className="navbar-desktop">
-      <h1 className="logo">Poke World</h1>
-      <Navlinks />
+      <div className="navbar-1">
+        <h1 className="logo">Poke World</h1>
+        <Navlinks />
+      </div>
     </nav>
   );
 };
