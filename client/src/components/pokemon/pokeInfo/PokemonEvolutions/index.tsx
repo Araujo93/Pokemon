@@ -1,7 +1,5 @@
 import React from "react";
 
-import "../pokeInfo.css";
-
 const PokemonEvolutions = ({ pokemonEvo }) => {
   return (
     <div className="pokemon-evo-container">

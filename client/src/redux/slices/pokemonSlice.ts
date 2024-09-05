@@ -162,9 +162,7 @@ export const fetchPokemonEvolutions = createAsyncThunk(
         const evolutionUrl = pokeData.evolution_chain.url;
 
         const evoResponse = await fetch(evolutionUrl);
-        // console.log(await evoResponse.json(), "evoResponse.json()");
         const res = await evoResponse.json();
-        console.log(res.chain, "res.chain");
         const evolutions = getEvoltionChain(res.chain);
         return evolutions;
       }

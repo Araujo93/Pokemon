@@ -12,10 +12,10 @@ import { useGetEvolutions } from "src/hooks/useGetEvolutions";
 import PokemonDescription from "./PokemonDescription";
 import PokeStatsAndTypes from "./PokeStatsAndTypes";
 import PokemonEvolutions from "./PokemonEvolutions";
+import Loader from "src/components/loader";
 
 // css
 import "./pokeInfo.css";
-import Loader from "src/components/loader";
 
 const PokeInfo = ({ id }) => {
   const {
@@ -35,6 +35,7 @@ const PokeInfo = ({ id }) => {
   const previousPokemon = async (id: any) => {
     router.replace(`/about/${id - 1}`);
   };
+
   return (
     <>
       {pokemonInfoLoading ? (

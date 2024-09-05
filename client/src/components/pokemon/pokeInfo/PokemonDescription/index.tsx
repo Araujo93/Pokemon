@@ -1,7 +1,5 @@
 import React from "react";
 
-import "../pokeInfo.css";
-
 const PokemonDescription = ({
   pokemonInfo,
   pokemonDesc,
