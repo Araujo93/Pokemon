@@ -8,6 +8,8 @@
 }
 .back {
   transform: perspective(1000px) rotateY(180deg);
+  /* background: #ffde00e5 !important; */
+  background: linear-gradient(90deg, #ffde00e5 50%, #3b4ccae5 50%) !important;
 }
 
 .card {
@@ -16,11 +18,15 @@
   height: 180px;
   cursor: pointer;
 }
+
 .card:hover .front {
   transform: perspective(1000px) rotateY(-180deg);
 }
+
 .card:hover .back {
   transform: perspective(1000px) rotateY(0deg);
+  border: 2px solid black;
+  box-shadow: black 0px 7px 15px;
 }
 
 .face {
